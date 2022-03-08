@@ -1,7 +1,10 @@
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
-public class AccountWithoutSync {
+//显式锁
+public class AccountWithSyncUsingLock {
     private static Account account = new Account();
 
     public static void main(String[] args) {
@@ -18,47 +21,36 @@ public class AccountWithoutSync {
         System.out.println("what is balance?" + account.getBalance());
     }
 
-    private static class AddAPennyTask implements Runnable {
+    public static class AddAPennyTask implements Runnable {
+
         @Override
         public void run() {
-            //方法二：给对象加锁
-            synchronized (account) {
-                account.deposit(1);
-            }
+            account.deposit(1);
         }
     }
 
-    private static class Account {
+    public static class Account {
+        private static Lock lock = new ReentrantLock();
         private int balance = 0;
 
         public int getBalance() {
             return balance;
         }
 
-        //方法一：synchronized一次只有一个线程可以访问这个方法
-//        public synchronized void deposit(int amount) {
-//            int newBalance = balance + amount;
-//
-//            try {
-//                Thread.sleep(5);
-//            } catch (InterruptedException e) {
-//
-//            }
-//
-//            balance = newBalance;
-//        }
-
         public void deposit(int amount) {
-            int newBalance = balance + amount;
+            lock.lock();
 
             try {
+                int newBalance = balance + amount;
+
                 Thread.sleep(5);
-            } catch (InterruptedException e) {
 
+                balance = newBalance;
+            } catch (InterruptedException ex) {
             }
-
-            balance = newBalance;
+            finally {
+                lock.unlock();
+            }
         }
     }
 }
-
