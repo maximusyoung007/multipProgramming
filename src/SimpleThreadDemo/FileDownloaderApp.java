@@ -75,7 +75,7 @@ public class FileDownloaderApp {
         public void run() {
             SftpUtils sftpUtils = null;
             try {
-                sftpUtils = new SftpUtils("123.207.201.195", 22, "maximus", "cpcn1234!", "1");
+                sftpUtils = new SftpUtils(host, port, username, password, isUsePassword);
 
                 String path = "download/";
 
