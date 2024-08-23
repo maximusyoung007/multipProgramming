@@ -27,12 +27,7 @@ public class FileDownloaderApp {
         CountDownLatch countDownLatch = new CountDownLatch(10);
 
         String fileName = "test";
-        for (int i = 1; i <= 5; i++) {
-            fileName = fileName + i + ".pdf";
-            new Thread(new FileDownloader(fileName, localUrl1, countDownLatch)).start();
-            fileName = "test";
-        }
-        for (int i = 6; i <= 10; i++) {
+        for (int i = 1; i <= 10; i++) {
             fileName = fileName + i + ".pdf";
             new Thread(new FileDownloader(fileName, localUrl1, countDownLatch)).start();
             fileName = "test";
