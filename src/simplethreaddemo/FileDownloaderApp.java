@@ -1,4 +1,4 @@
-package SimpleThreadDemo;
+package simplethreaddemo;
 
 import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.SftpException;
@@ -44,7 +44,8 @@ public class FileDownloaderApp {
 
     //使用单线程下载文件
     private static void downloadSingleThread(String localUrl) throws JSchException, SftpException {
-        SftpUtils sftpUtils = new SftpUtils(host, port, username, password, isUsePassword);
+        SftpUtils sftpUtils = new SftpUtils("123.207.201.195", 22, "maximus", "cpcn1234!", "1");
+//        SftpUtils sftpUtils = new SftpUtils(host, port, username, password, isUsePassword);
 
         String path = "download/";
         String fileName = "test";
@@ -75,7 +76,8 @@ public class FileDownloaderApp {
         public void run() {
             SftpUtils sftpUtils = null;
             try {
-                sftpUtils = new SftpUtils(host, port, username, password, isUsePassword);
+                sftpUtils = new SftpUtils("123.207.201.195", 22, "maximus", "cpcn1234!", "1");
+                //sftpUtils = new SftpUtils(host, port, username, password, isUsePassword);
 
                 String path = "download/";
 

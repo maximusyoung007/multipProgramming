@@ -1,4 +1,4 @@
-package SimpleThreadDemo;
+package simplethreaddemo;
 
 /**
  * <pre>
@@ -7,9 +7,9 @@ package SimpleThreadDemo;
  * ============ ============= ============================
  * maximus         2024/8/21      create
  */
-public class RunnableDemo implements Runnable{
+public class ThreadDemo extends Thread {
     @Override
     public void run() {
-        System.out.println("2.this is runnable demo, thread name:" + Thread.currentThread().getName());
+        System.out.println("1.this is thread demo, thread name:" + Thread.currentThread().getName());
     }
 }

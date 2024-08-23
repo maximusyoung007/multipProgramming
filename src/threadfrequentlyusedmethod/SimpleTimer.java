@@ -1,4 +1,4 @@
-package ThreadFrequentlyUsedMethod;
+package threadfrequentlyusedmethod;
 
 /**
  * <pre>

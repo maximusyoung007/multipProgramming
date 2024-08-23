@@ -1,4 +1,4 @@
-package SimpleThreadDemo;
+package simplethreaddemo;
 
 /**
  * <pre>
@@ -7,9 +7,10 @@ package SimpleThreadDemo;
  * ============ ============= ============================
  * 杨文俊         2024/8/21      create
  */
-public class TestRunDaughter implements TestRun {
+public class TestRunGrandSon extends TestRunSon{
+
     @Override
     public void run() {
-        System.out.println("daughter");
+        System.out.println("test run");
     }
 }
