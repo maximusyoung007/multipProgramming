@@ -5,7 +5,7 @@ import java.util.concurrent.TimeUnit;
 public class VisibilityDemo {
     public static void main(String[] args) throws InterruptedException {
         TimeConsumingTask timeConsumingTask = new TimeConsumingTask();
-        Thread thread = new Thread(new TimeConsumingTask());
+        Thread thread = new Thread(timeConsumingTask);
         thread.start();
         //Thread.sleep(1000);
         TimeUnit.SECONDS.sleep(1);
@@ -14,6 +14,7 @@ public class VisibilityDemo {
 }
 
 class TimeConsumingTask implements Runnable {
+    // volatile保证toCancel的可见性，但是实测发现，即使不加，主线程中更新toCancel，子线程也能看到
     private volatile boolean toCancel = false;
     @Override
     public void run() {
@@ -23,7 +24,7 @@ class TimeConsumingTask implements Runnable {
                 if (doExecute()) {
                     break;
                 }
-                TimeUnit.MILLISECONDS.sleep(10);
+
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -41,7 +42,7 @@ class TimeConsumingTask implements Runnable {
         System.out.println("executing...");
 
         //模拟程序运行了5s
-        TimeUnit.MILLISECONDS.sleep(500);
+        TimeUnit.MILLISECONDS.sleep(50);
 
         return isDone;
     }
