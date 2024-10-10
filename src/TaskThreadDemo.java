@@ -1,4 +1,3 @@
-import com.sun.xml.internal.bind.v2.model.annotation.RuntimeAnnotationReader;
 
 public class TaskThreadDemo {
     public static void main(String[] args) {

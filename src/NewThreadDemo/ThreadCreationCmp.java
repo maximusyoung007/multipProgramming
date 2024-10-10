@@ -9,13 +9,13 @@ package NewThreadDemo;
  */
 public class ThreadCreationCmp {
     public static void main(String[] args) {
-        //16核
+
         final int processorsNum = Runtime.getRuntime().availableProcessors();
 
         Thread t;
         CountingTask ct = new CountingTask();
 
-        //实现Runnable接口的方式， count < 2 * 16 * 100
+        //实现Runnable接口的方式， count < 2 * 核心数 * 100
         for (int i = 0; i < 2 * processorsNum; i++) {
             t = new Thread(ct);
             t.start();
