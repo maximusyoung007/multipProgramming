@@ -1,4 +1,4 @@
-package NewThreadDemo;
+package simplethreaddemo;
 
 /**
  * <pre>
